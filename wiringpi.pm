@@ -50,6 +50,8 @@ sub this {
 package wiringpi;
 
 *wiringPiSetup = *wiringpic::wiringPiSetup;
+*wiringPiSetupSys = *wiringpic::wiringPiSetupSys;
+*wiringPiSetupGpio = *wiringpic::wiringPiSetupGpio;
 *wiringPiGpioMode = *wiringpic::wiringPiGpioMode;
 *pullUpDnControl = *wiringpic::pullUpDnControl;
 *pinMode = *wiringpic::pinMode;
@@ -58,6 +60,9 @@ package wiringpi;
 *digitalRead = *wiringpic::digitalRead;
 *shiftOut = *wiringpic::shiftOut;
 *shiftIn = *wiringpic::shiftIn;
+*delay = *wiringpic::delay;
+*delayMicroseconds = *wiringpic::delayMicroseconds;
+*millis = *wiringpic::millis;
 *serialOpen = *wiringpic::serialOpen;
 *serialClose = *wiringpic::serialClose;
 *serialPutchar = *wiringpic::serialPutchar;

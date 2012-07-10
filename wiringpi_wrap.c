@@ -1763,6 +1763,29 @@ SWIG_From_unsigned_SS_char  SWIG_PERL_DECL_ARGS_1(unsigned char value)
 }
 
 
+SWIGINTERN int
+SWIG_AsVal_unsigned_SS_int SWIG_PERL_DECL_ARGS_2(SV * obj, unsigned int *val)
+{
+  unsigned long v;
+  int res = SWIG_AsVal_unsigned_SS_long SWIG_PERL_CALL_ARGS_2(obj, &v);
+  if (SWIG_IsOK(res)) {
+    if ((v > UINT_MAX)) {
+      return SWIG_OverflowError;
+    } else {
+      if (val) *val = (unsigned int)(v);
+    }
+  }  
+  return res;
+}
+
+
+SWIGINTERNINLINE SV *
+SWIG_From_unsigned_SS_int  SWIG_PERL_DECL_ARGS_1(unsigned int value)
+{    
+  return SWIG_From_unsigned_SS_long  SWIG_PERL_CALL_ARGS_1(value);
+}
+
+
 SWIGINTERN swig_type_info*
 SWIG_pchar_descriptor(void)
 {
@@ -1862,6 +1885,42 @@ XS(_wrap_wiringPiSetup) {
       SWIG_croak("Usage: wiringPiSetup();");
     }
     result = (int)wiringPiSetup();
+    ST(argvi) = SWIG_From_int  SWIG_PERL_CALL_ARGS_1((int)(result)); argvi++ ;
+    XSRETURN(argvi);
+  fail:
+    SWIG_croak_null();
+  }
+}
+
+
+XS(_wrap_wiringPiSetupSys) {
+  {
+    int argvi = 0;
+    int result;
+    dXSARGS;
+    
+    if ((items < 0) || (items > 0)) {
+      SWIG_croak("Usage: wiringPiSetupSys();");
+    }
+    result = (int)wiringPiSetupSys();
+    ST(argvi) = SWIG_From_int  SWIG_PERL_CALL_ARGS_1((int)(result)); argvi++ ;
+    XSRETURN(argvi);
+  fail:
+    SWIG_croak_null();
+  }
+}
+
+
+XS(_wrap_wiringPiSetupGpio) {
+  {
+    int argvi = 0;
+    int result;
+    dXSARGS;
+    
+    if ((items < 0) || (items > 0)) {
+      SWIG_croak("Usage: wiringPiSetupGpio();");
+    }
+    result = (int)wiringPiSetupGpio();
     ST(argvi) = SWIG_From_int  SWIG_PERL_CALL_ARGS_1((int)(result)); argvi++ ;
     XSRETURN(argvi);
   fail:
@@ -2178,6 +2237,78 @@ XS(_wrap_shiftIn) {
 }
 
 
+XS(_wrap_delay) {
+  {
+    unsigned int arg1 ;
+    unsigned int val1 ;
+    int ecode1 = 0 ;
+    int argvi = 0;
+    dXSARGS;
+    
+    if ((items < 1) || (items > 1)) {
+      SWIG_croak("Usage: delay(howLong);");
+    }
+    ecode1 = SWIG_AsVal_unsigned_SS_int SWIG_PERL_CALL_ARGS_2(ST(0), &val1);
+    if (!SWIG_IsOK(ecode1)) {
+      SWIG_exception_fail(SWIG_ArgError(ecode1), "in method '" "delay" "', argument " "1"" of type '" "unsigned int""'");
+    } 
+    arg1 = (unsigned int)(val1);
+    delay(arg1);
+    ST(argvi) = sv_newmortal();
+    
+    XSRETURN(argvi);
+  fail:
+    
+    SWIG_croak_null();
+  }
+}
+
+
+XS(_wrap_delayMicroseconds) {
+  {
+    unsigned int arg1 ;
+    unsigned int val1 ;
+    int ecode1 = 0 ;
+    int argvi = 0;
+    dXSARGS;
+    
+    if ((items < 1) || (items > 1)) {
+      SWIG_croak("Usage: delayMicroseconds(howLong);");
+    }
+    ecode1 = SWIG_AsVal_unsigned_SS_int SWIG_PERL_CALL_ARGS_2(ST(0), &val1);
+    if (!SWIG_IsOK(ecode1)) {
+      SWIG_exception_fail(SWIG_ArgError(ecode1), "in method '" "delayMicroseconds" "', argument " "1"" of type '" "unsigned int""'");
+    } 
+    arg1 = (unsigned int)(val1);
+    delayMicroseconds(arg1);
+    ST(argvi) = sv_newmortal();
+    
+    XSRETURN(argvi);
+  fail:
+    
+    SWIG_croak_null();
+  }
+}
+
+
+XS(_wrap_millis) {
+  {
+    int argvi = 0;
+    unsigned int result;
+    dXSARGS;
+    
+    if ((items < 0) || (items > 0)) {
+      SWIG_croak("Usage: millis();");
+    }
+    result = (unsigned int)millis();
+    ST(argvi) = SWIG_From_unsigned_SS_int  SWIG_PERL_CALL_ARGS_1((unsigned int)(result)); argvi++ ;
+    XSRETURN(argvi);
+  fail:
+    SWIG_croak_null();
+  }
+}
+
+
 XS(_wrap_serialOpen) {
   {
     char *arg1 = (char *) 0 ;
@@ -2443,6 +2574,8 @@ static swig_variable_info swig_variables[] = {
 };
 static swig_command_info swig_commands[] = {
 {"wiringpic::wiringPiSetup", _wrap_wiringPiSetup},
+{"wiringpic::wiringPiSetupSys", _wrap_wiringPiSetupSys},
+{"wiringpic::wiringPiSetupGpio", _wrap_wiringPiSetupGpio},
 {"wiringpic::wiringPiGpioMode", _wrap_wiringPiGpioMode},
 {"wiringpic::pullUpDnControl", _wrap_pullUpDnControl},
 {"wiringpic::pinMode", _wrap_pinMode},
@@ -2451,6 +2584,9 @@ static swig_command_info swig_commands[] = {
 {"wiringpic::digitalRead", _wrap_digitalRead},
 {"wiringpic::shiftOut", _wrap_shiftOut},
 {"wiringpic::shiftIn", _wrap_shiftIn},
+{"wiringpic::delay", _wrap_delay},
+{"wiringpic::delayMicroseconds", _wrap_delayMicroseconds},
+{"wiringpic::millis", _wrap_millis},
 {"wiringpic::serialOpen", _wrap_serialOpen},
 {"wiringpic::serialClose", _wrap_serialClose},
 {"wiringpic::serialPutchar", _wrap_serialPutchar},
