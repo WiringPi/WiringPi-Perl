@@ -1842,9 +1842,9 @@ SWIG_AsCharPtrAndSize(SV *obj, char** cptr, size_t* psize, int *alloc)
 
 
 
-#include "wiringPi.h"
-#include "wiringShift.h"
-#include "serial.h"
+#include "WiringPi/wiringPi/wiringPi.h"
+#include "WiringPi/wiringPi/wiringShift.h"
+#include "WiringPi/wiringPi/serial.h"
 
 #ifdef __cplusplus
 extern "C" {
