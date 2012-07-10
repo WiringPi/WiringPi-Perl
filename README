@@ -1,0 +1,13 @@
+Build with:
+    gcc -fpic -c -Dbool=char -I/usr/lib/perl/5.10.1/CORE wiringpi_wrap.c wiringPi.c -D_GNU_SOURCE
+    gcc -shared wiringPi.o wiringpi_wrap.o -o wiringpi.so
+
+Test with:
+    sudo perl -d -e 1
+
+WiringPi: An implementation of most of the Arduino Wiring
+	functions for the Raspberry Pi
+
+Full details at:
+	https://projects.drogon.net/raspberry-pi/wiringpi/
+
