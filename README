@@ -1,13 +1,28 @@
-Build with:
-    gcc -fpic -c -Dbool=char -I/usr/lib/perl/5.10.1/CORE wiringpi_wrap.c wiringPi.c -D_GNU_SOURCE
-    gcc -shared wiringPi.o wiringpi_wrap.o -o wiringpi.so
+#WiringPi for Perl
 
-Test with:
-    sudo perl -d -e 1
+WiringPi: An implementation of most of the Arduino Wiring functions for the Raspberry Pi
 
-WiringPi: An implementation of most of the Arduino Wiring
-	functions for the Raspberry Pi
+#Quick Build
 
-Full details at:
-	https://projects.drogon.net/raspberry-pi/wiringpi/
+##Requirements
+
+`sudo apt-get install swig2.0 libperl-dev`
+
+##Building
+
+Clone this repo: `git clone http://github.com/wiringpi/wiringpi-perl`
+
+Enter the directory: `cd wiringpi-perl`
+
+Run the build script: `./build.sh`
+
+##Testing
+
+Run `./test.pl` to import and test the module by reading the pull-up on an i2c pin.
+
+Use `sudo perl -d -e 1` to play with the library in interactive mode.
+
+#Note
+
+This is a wrapper around Gordon Henderson's WiringPi, full details of the library here: http://www.wiringpi.com
 
