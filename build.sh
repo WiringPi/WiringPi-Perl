@@ -1,6 +1,8 @@
 #!/bin/bash
+echo "Updating submodule..."
+git submodule update --init
 
-echo "Generating bindings"
+echo "Generating bindings..."
 swig2.0 -perl wiringpi.i
 
 CORE=`perl -MConfig -e 'print $Config{archlib}'`/CORE
